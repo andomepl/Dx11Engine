@@ -2,7 +2,7 @@
 #include"ErrorLogger.h"
 
 
-#include"WindowContainer.h"
+
 
 class WindowContainer;
 

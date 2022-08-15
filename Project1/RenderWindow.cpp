@@ -1,7 +1,7 @@
 #include"RenderWindow.h"
 
 
-bool RenderWindow::Initalize(HINSTANCE hInstace, std::string window_title, std::string window_class, int width, int height) {
+bool RenderWindow::Initalize(WindowContainer* pWindowContainer,HINSTANCE hInstace, std::string window_title, std::string window_class, int width, int height) {
 
 
 	hInstace = hInstace;
@@ -65,13 +65,72 @@ RenderWindow::~RenderWindow() {
 	}
 
 }
+bool RenderWindow::ProcessMessages() {
+
+	MSG msg;
+
+
+	ZeroMemory(&msg,
+		sizeof(MSG)
+	);
+
+	if (PeekMessage(
+		&msg,
+		this->handle,
+		0,
+		0,
+		PM_REMOVE
+
+	)) {
+
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+	if (msg.message == WM_NULL) {
+
+		if (!IsWindow(this->handle)) {
+
+			this->handle = NULL;
+			UnregisterClass(this->window_class_wide.c_str(), this->hInstance);
+			return false;
+		}
+
+
+	}
+
+
+	return true;
+
+}
+
+
+LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+
+	switch (uMsg) {
+
+	case WM_NCCREATE: {
+		OutputDebugStringA("Tthe windos carea.\n");
+		return DefWindowProc(hwnd, uMsg, wParam, lParam);
+
+	}
+	default:
+		DefWindowProc(hwnd, uMsg, wParam, lParam);
+
+
+
+	}
+
+
+}
+
+
 void RenderWindow::RegisterWindowClass() {
 
 	WNDCLASSEX wc;
 
 	wc.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
 
-	wc.lpfnWndProc = ProcessMessages();
+	wc.lpfnWndProc = WindowProc;
 
 	wc.cbClsExtra = 0;
 	wc.cbWndExtra = 0;
@@ -88,10 +147,3 @@ void RenderWindow::RegisterWindowClass() {
 
 }
 
-
-bool RenderWindow::ProcessMessages() {
-
-
-
-
-}

@@ -1,2 +1,9 @@
-﻿  源.cpp
-  Project1.vcxproj -> D:\ACode\DX11\Dx11Engine\x64\Debug\Project1.exe
+﻿  Engine.cpp
+  RenderWindow.cpp
+D:\GameEngine\DirectX11\Dx11Engine\Project1\WindowContainer.h(6,15): error C2143: 语法错误: 缺少“;”(在“&”的前面)
+D:\GameEngine\DirectX11\Dx11Engine\Project1\WindowContainer.h(6,15): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\GameEngine\DirectX11\Dx11Engine\Project1\WindowContainer.h(6,37): error C2334: “{”的前面有意外标记；跳过明显的函数体
+D:\GameEngine\DirectX11\Dx11Engine\Project1\WindowContainer.h(19,15): error C3646: “render_window”: 未知重写说明符
+D:\GameEngine\DirectX11\Dx11Engine\Project1\WindowContainer.h(19,28): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+  源.cpp
+  正在生成代码...

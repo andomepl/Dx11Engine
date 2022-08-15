@@ -7,7 +7,7 @@
 
 #include<iostream>
 
-#include"RenderWindow.h"
+#include"Engine.h"
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
@@ -15,11 +15,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_ int nCmdShow) {
 
 
-	RenderWindow rw;
+	Engine engine;
 
-	rw.Initalize(hInstance, "Title", "My WindowClass", 800, 600);
+	engine.Initalize(hInstance, "title", "MyWindowClass", 800, 600);
+
+	while (engine.ProcessMessage()) {
 
 
+	}
 
 
 

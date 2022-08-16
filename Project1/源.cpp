@@ -21,7 +21,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	while (engine.ProcessMessage()) {
 
-
+		
 	}
 
 

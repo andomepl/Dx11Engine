@@ -1,7 +1,7 @@
 #include"RenderWindow.h"
 
 
-bool RenderWindow::Initalize(WindowContainer* pWindowContainer,HINSTANCE hInstace, std::string window_title, std::string window_class, int width, int height) {
+bool RenderWindow::Initalize(WindowWrap* pWindowContainer,HINSTANCE hInstace, std::string window_title, std::string window_class, int width, int height) {
 
 
 	hInstace = hInstace;
@@ -70,9 +70,7 @@ bool RenderWindow::ProcessMessages() {
 	MSG msg;
 
 
-	ZeroMemory(&msg,
-		sizeof(MSG)
-	);
+	ZeroMemory(&msg,sizeof(MSG));
 
 	if (PeekMessage(
 		&msg,
@@ -103,6 +101,27 @@ bool RenderWindow::ProcessMessages() {
 
 }
 
+std::vector<std::string> eventbuffer;
+
+template<typename T>
+void EventTest(UINT num = 0, void* ptr = nullptr) {
+
+	for (UINT i = 0; i < num; i++) {
+
+
+
+
+
+		eventbuffer.push_back(std::string{ static_cast<char*>(ptr)});
+
+		
+	}
+
+
+}
+
+
+
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 
@@ -110,6 +129,8 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
 
 	case WM_NCCREATE: {
 		OutputDebugStringA("Tthe windos carea.\n");
+
+
 		return DefWindowProc(hwnd, uMsg, wParam, lParam);
 
 	}

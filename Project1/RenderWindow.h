@@ -1,20 +1,34 @@
 #pragma once
 #include"ErrorLogger.h"
 
+#include<utility>
+#include<vector>
+//#include<string>
 
-
-
-class WindowContainer;
+class WindowWrap;
 
 
 class RenderWindow {
 
 public:
-	bool Initalize(WindowContainer* pWindowContainer,HINSTANCE hInstace, std::string window_title, std::string window_class, int width, int height);
+
+	using WIDTH = int;
+
+	using HEIGHT = int;
 
 
-	HWND GetHandle()const noexcept{ return handle; };
+	bool Initalize(WindowWrap* pWindowContainer,HINSTANCE hInstace, std::string window_title, std::string window_class, int width, int height);
 
+
+	HWND GetHandle()const noexcept{ return handle; }
+
+
+	HINSTANCE GetHinstance() const noexcept { return hInstance; }
+
+	std::pair<WIDTH, HEIGHT> Get_Screen()const noexcept {
+
+		return std::pair<WIDTH, HEIGHT>{width, height};
+	}
 
 	bool ProcessMessages();
 

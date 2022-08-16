@@ -44,7 +44,7 @@
     <ClInclude Include="Engine.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="WindowContainer.h">
+    <ClInclude Include="WindowWrap.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

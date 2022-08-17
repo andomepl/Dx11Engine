@@ -12,9 +12,9 @@ class RenderWindow {
 
 public:
 
-	using WIDTH = int;
+	using WIDTH = UINT;
 
-	using HEIGHT = int;
+	using HEIGHT = UINT;
 
 
 	bool Initalize(WindowWrap* pWindowContainer,HINSTANCE hInstace, std::string window_title, std::string window_class, int width, int height);
@@ -50,7 +50,7 @@ private:
 
 	std::wstring window_class_wide = L"";
 
-	int width = 0;
-	int height = 0;
+	int width{ 0 };
+	int height{ 0 };
 
 };

@@ -31,7 +31,7 @@ bool RenderWindow::Initalize(WindowWrap* pWindowContainer,HINSTANCE hInstace, st
 		NULL,
 		NULL,
 		this->hInstance,
-		NULL
+		pWindowContainer
 
 
 
@@ -128,6 +128,22 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
 	switch (uMsg) {
 
 	case WM_NCCREATE: {
+
+		const CREATESTRUCTW* const pCreate = reinterpret_cast<CREATESTRUCTW*>(lParam);
+
+		WindowWrap* pWindow = reinterpret_cast<WindowWrap*>(pCreate->lpCreateParams);
+
+		if (pWindow == nullptr) {
+
+			ErrorLogger::Log("Critical Error: Pointer to window container is null during WM_NCCREATE");
+
+			exit(-1);
+
+		}
+
+
+
+
 		OutputDebugStringA("Tthe windos carea.\n");
 
 
@@ -151,7 +167,7 @@ void RenderWindow::RegisterWindowClass() {
 
 	wc.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
 
-	wc.lpfnWndProc = WindowProc;
+	wc.lpfnWndProc = DefWindowProc;
 
 	wc.cbClsExtra = 0;
 	wc.cbWndExtra = 0;

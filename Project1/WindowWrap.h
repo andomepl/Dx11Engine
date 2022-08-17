@@ -27,9 +27,6 @@ public :
 	 }
 
 
-	 std::function<void(UINT,void*)> cbFun;
-
-
 
 protected:
 

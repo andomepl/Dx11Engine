@@ -12,6 +12,7 @@ void ErrorLogger::Log(std::string message) {
 
 }
 
+
 void ErrorLogger::Log(HRESULT hr, std::string message) {
 
 

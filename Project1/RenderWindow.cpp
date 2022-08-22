@@ -1,7 +1,7 @@
 #include"RenderWindow.h"
+#include"WindowWrap.h"
 
-
-bool RenderWindow::Initalize(WindowWrap* pWindowContainer,HINSTANCE hInstace, std::string window_title, std::string window_class, int width, int height) {
+bool RenderWindow::Initalize(WindowWrap* pWindowCWarp,HINSTANCE hInstace, std::string window_title, std::string window_class, int width, int height) {
 
 
 	hInstace = hInstace;
@@ -31,7 +31,7 @@ bool RenderWindow::Initalize(WindowWrap* pWindowContainer,HINSTANCE hInstace, st
 		NULL,
 		NULL,
 		this->hInstance,
-		pWindowContainer
+		pWindowCWarp
 
 
 
@@ -70,7 +70,9 @@ bool RenderWindow::ProcessMessages() {
 	MSG msg;
 
 
-	ZeroMemory(&msg,sizeof(MSG));
+
+	memset(&msg, 0, sizeof(MSG));
+
 
 	if (PeekMessage(
 		&msg,
@@ -101,29 +103,35 @@ bool RenderWindow::ProcessMessages() {
 
 }
 
-std::vector<std::string> eventbuffer;
 
-template<typename T>
-void EventTest(UINT num = 0, void* ptr = nullptr) {
 
-	for (UINT i = 0; i < num; i++) {
+LRESULT CALLBACK HandleMsgRedirect(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 
 
 
 
+	switch (uMsg)
+	{
+	case WM_CLOSE:
+		DestroyWindow(hwnd);
+		return 0;
 
-		eventbuffer.push_back(std::string{ static_cast<char*>(ptr)});
 
+	default: {
+		WindowWrap* const windowWrap = reinterpret_cast<WindowWrap*>(GetWindowLongPtr(hwnd, GWLP_USERDATA));
+
+		return windowWrap->WindowProc(hwnd, uMsg, wParam, lParam);
+
+	}
 		
 	}
-
-
 }
 
 
 
 
-LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+
+LRESULT CALLBACK HandleMessageSetup(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 
 	switch (uMsg) {
 
@@ -132,6 +140,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
 		const CREATESTRUCTW* const pCreate = reinterpret_cast<CREATESTRUCTW*>(lParam);
 
 		WindowWrap* pWindow = reinterpret_cast<WindowWrap*>(pCreate->lpCreateParams);
+
 
 		if (pWindow == nullptr) {
 
@@ -142,12 +151,19 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
 		}
 
 
+		SetWindowLongPtr(hwnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(pWindow));
+
+		//WindowWrap* const pWindow = reinterpret_cast<WindowWrap*>(GetWindowLongPtr(hwnd, GWLP_USERDATA));
+
+		SetWindowLongPtr(hwnd, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(HandleMsgRedirect));
 
 
-		OutputDebugStringA("Tthe windos carea.\n");
 
 
-		return DefWindowProc(hwnd, uMsg, wParam, lParam);
+		return pWindow->WindowProc(hwnd,uMsg,wParam,lParam);
+
+
+		//return DefWindowProc(hwnd, uMsg, wParam, lParam);
 
 	}
 	default:
@@ -167,7 +183,7 @@ void RenderWindow::RegisterWindowClass() {
 
 	wc.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
 
-	wc.lpfnWndProc = DefWindowProc;
+	wc.lpfnWndProc = HandleMessageSetup;
 
 	wc.cbClsExtra = 0;
 	wc.cbWndExtra = 0;

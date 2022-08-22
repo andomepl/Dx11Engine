@@ -3,6 +3,8 @@
 
 #include<utility>
 #include<vector>
+#include<iostream>
+
 //#include<string>
 
 class WindowWrap;
@@ -33,6 +35,9 @@ public:
 	bool ProcessMessages();
 
 	~RenderWindow();
+
+
+
 
 
 private:

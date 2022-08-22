@@ -4,10 +4,17 @@
 
 #include<functional>
 
+#include"Console.h"
+
+using Log::Console;
+
 class WindowWrap {
 
+
+
+
 public :
-	 RenderWindow& Get_RenderWindow()  {
+	inline RenderWindow& Get_RenderWindow()  {
 
 
 		return render_window;
@@ -15,21 +22,41 @@ public :
 	}
 
 
-	 HINSTANCE Get_HINSTANCE() {
+	void CreateConsole() {
 
-		 return render_window.GetHinstance();
+		 
+		console.Initalize();
+
+		console.Write("test\n");
+
+	}
+
+
+
+	 std::pair<std::string,bool>  Initalize(WindowWrap* pWindowWarp,HINSTANCE hInstace, std::string window_title, std::string window_class, int width, int height) {
+
+		 CreateConsole();
+
+
+
+		 bool windowInitalize = render_window.Initalize(pWindowWarp, hInstace, window_title, window_class, width, height);
+
+		 return { CompoentName ,windowInitalize };
+		  
 
 	 }
 
 
-	 std::pair<RenderWindow::WIDTH,RenderWindow::HEIGHT>Get_Screen() {
-		 return render_window.Get_Screen();
-	 }
+	 LRESULT WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 
+private:
 
-protected:
+	std::string CompoentName{ "WindowWarp" };
+
 
 	RenderWindow render_window;
 
+	
+	Console console;
 };

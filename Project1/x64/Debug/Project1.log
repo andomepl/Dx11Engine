@@ -1,4 +1,9 @@
 ﻿  Engine.cpp
-  源.cpp
+D:\ACode\DX11\Dx11Engine\Project1\Engine.cpp(6,14): warning C4101: “Debug”: 未引用的局部变量
+  main.cpp
+  RenderWindow.cpp
+  WindowWrap.cpp
   正在生成代码...
+D:\ACode\DX11\Dx11Engine\Project1\RenderWindow.cpp(177): warning C4715: “HandleMessageSetup”: 不是所有的控件路径都返回值
+D:\ACode\DX11\Dx11Engine\Project1\Engine.cpp(11): warning C4172: 返回局部变量或临时变量的地址
   Project1.vcxproj -> D:\ACode\DX11\Dx11Engine\x64\Debug\Project1.exe

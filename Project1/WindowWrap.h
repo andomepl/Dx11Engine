@@ -14,7 +14,7 @@ class WindowWrap {
 
 
 public :
-	inline RenderWindow& Get_RenderWindow()  {
+	inline RenderWindow& Get_RenderWindow() {
 
 
 		return render_window;
@@ -22,7 +22,7 @@ public :
 	}
 
 
-	void CreateConsole() {
+	static void CreateConsole() {
 
 		 
 		console.Initalize();
@@ -31,6 +31,11 @@ public :
 
 	}
 
+
+	static Console& Getconsole(){
+
+		return console;
+	}
 
 
 	 std::pair<std::string,bool>  Initalize(WindowWrap* pWindowWarp,HINSTANCE hInstace, std::string window_title, std::string window_class, int width, int height) {
@@ -58,5 +63,5 @@ private:
 	RenderWindow render_window;
 
 	
-	Console console;
+	 static Console console;
 };

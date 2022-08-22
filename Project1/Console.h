@@ -13,20 +13,20 @@ namespace Log {
 	public:
 
 
-		void Write(std::string message) {
-
+		static void Write(std::string message) {
+			 
 
 
 			fprintf_s(outstream, message.c_str());
 
 
-			fclose(outstream);
+			//fclose(outstream);
 
 
 		}
 
 
-		void Initalize() {
+		static void Initalize() {
 
 			AllocConsole();
 
@@ -65,13 +65,13 @@ namespace Log {
 
 
 
-		FILE* instream = nullptr;
+		static FILE* instream;
 
-		FILE* outstream = nullptr;
+		static FILE* outstream;
 
 		bool is_initalizeSucceed = false;
 
-		const std::wstring consoleTitle{ L"Dx11Engine Debug" };
+		static  const std::wstring consoleTitle;
 
 
 	};

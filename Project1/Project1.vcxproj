@@ -134,6 +134,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Console.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="ErrorLogger.cpp" />
     <ClCompile Include="main.cpp" />
@@ -145,6 +146,8 @@
     <ClInclude Include="Console.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="ErrorLogger.h" />
+    <ClInclude Include="KeyEvent.h" />
+    <ClInclude Include="KeyInput.h" />
     <ClInclude Include="RenderWindow.h" />
     <ClInclude Include="StringConverter.h" />
     <ClInclude Include="WindowWrap.h" />

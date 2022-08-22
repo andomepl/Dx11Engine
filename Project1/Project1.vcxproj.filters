@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\Keyboard">
+      <UniqueIdentifier>{598c0a1a-6665-43c0-957f-3985c911e50c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Keyboard">
+      <UniqueIdentifier>{060a2e45-d4aa-403a-833e-dd2cb935bf54}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StringConverter.cpp">
@@ -31,6 +37,9 @@
       <Filter>资源文件</Filter>
     </ClCompile>
     <ClCompile Include="WindowWrap.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Console.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -52,6 +61,12 @@
     </ClInclude>
     <ClInclude Include="Console.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyInput.h">
+      <Filter>头文件\Keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyEvent.h">
+      <Filter>头文件\Keyboard</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

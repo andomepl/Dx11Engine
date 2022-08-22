@@ -120,6 +120,7 @@ LRESULT CALLBACK HandleMsgRedirect(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM l
 	default: {
 		WindowWrap* const windowWrap = reinterpret_cast<WindowWrap*>(GetWindowLongPtr(hwnd, GWLP_USERDATA));
 
+
 		return windowWrap->WindowProc(hwnd, uMsg, wParam, lParam);
 
 	}
@@ -144,7 +145,9 @@ LRESULT CALLBACK HandleMessageSetup(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
 
 		if (pWindow == nullptr) {
 
-			ErrorLogger::Log("Critical Error: Pointer to window container is null during WM_NCCREATE");
+			Log::Console::Write("Critical Error: Pointer to window container is null during WM_NCCREATE");
+
+		//	ErrorLogger::Log("Critical Error: Pointer to window container is null during WM_NCCREATE");
 
 			exit(-1);
 

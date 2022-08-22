@@ -3,6 +3,11 @@
 #include<memory>
 
 #include"WindowWrap.h"
+
+
+
+
+
 class Engine {
 
 
@@ -20,6 +25,7 @@ private:
 
 public :
 
+	
 
 
 
@@ -31,5 +37,8 @@ public :
 
 	bool ProcessMessage();
 
+
+
+	void Upadte();
 
 };
